@@ -1,5 +1,1 @@
-Here you can say lots of fun things about your site.
-
-Maybe say a some things about yourself.
-
-Or maybe what you plan to blog about.
+The world is made of data and driven by data. I believe we know the world and ourself better when we understand data more.
