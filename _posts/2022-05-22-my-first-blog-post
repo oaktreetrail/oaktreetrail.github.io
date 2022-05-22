@@ -1,0 +1,7 @@
+## This is my first blog post
+Hello, Welcome to my blog! 
+ ```tsql
+ SELECT *
+ FROM sys.tables
+ WHERE [name] = 'SomeTable'
+ ```
