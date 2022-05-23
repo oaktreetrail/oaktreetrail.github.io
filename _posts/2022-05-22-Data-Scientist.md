@@ -1,4 +1,4 @@
-# this is the blog about data scientist VS. statistitian 
+# Data scientist
 When I started a journey of pursuing a data scientist a couple of years ago, I wasn’t clear about what being a data scientist is about. But,  I was overwhelmed by the terminology like artificial intelligence, big data, IOT and machine learning in the past few years.  I didn’t know how big a big data was but I knew I had to upgrade my iPhone to get doubled and tripled size of memory and I had to pay Google for the extra space to save my document and pictures. The data has been growing in every area including my research. As gene sequencing gets cheaper and faster than before, our lab gets more experiment result as more turnaround. The manual analysis lowers the efficiency of lab work. I believe it’s time to jump in the sea of big data and get wet. 
 
 I would like to give you the following definition if you ask me what being a data scientist is about.
