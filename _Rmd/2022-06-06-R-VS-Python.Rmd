@@ -8,9 +8,11 @@ knitr::opts_chunk$set(echo = TRUE,fig.path = "../images/")
 ```
 
 ## R vs. Python
-Everyone in this course had some programming experience coming in (due to the prerequisites).  What are your thoughts on R vs whatever other software you've used?  What functionality do you like about R?  What parts do you miss about your other language?  Do you consider R a difficult language to learn? (If you knew R prior to the course, describe your experience when first learning it.)
-
+I was first exposed to R, followed by SAS and Python. And I am more proficient in R, as compared to the others. I like the consistency of R and its power of visualizing the data. 
 ```{r }
 plot(iris)
 ```
+
+For example, the ggplot2 library provides  a great deal of intuitive customizability. 
+While R emphasizes statistical analysis, Python gives me the necessary skills to work on business,digital products, open-source projects and various application development outside of data science. Due to its terminal function, Python is also a great tool for bioinformatic analysis, such as gene sequencing quality checks and trimming, alignment to reference genome and DEG calling. Those functions are not included in R. Since R is an open source language, it is the users' responsibility to validate and manage the version of the packages. I believe it's not hard to learn R, because it was my first language to learn and I got used to its logics. And as an advanced language, coding is much easier than other languages, such as C++.  
 
