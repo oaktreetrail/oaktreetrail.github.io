@@ -1,4 +1,4 @@
-ST558_Blog3
+The Coolest Thing in R
 ================
 2022-06-30
 
@@ -52,7 +52,7 @@ ggplot(mapdata1, aes(x= long, y =lat, group = group)) +
   labs(title = "Coronavirus Worldwide")
 ```
 
-![](C:\Harry\for%20Lan\ST558\blog\oaktreetrail.github.io_posts\2022-06-30-Cool-Thing-R_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](../images/unnamed-chunk-7-1.png)<!-- -->
 
 This map shows us that the United States of America has the largest
 total confirmed cases, followed by India and Brazil.
