@@ -47,5 +47,7 @@ template that can be reused across multiple similar scenarios.
 ## Below are the links to our project
 
 \-[GitHub page repo is available
-here](https://github.com/oaktreetrail/ST558_Project2) -[Regular repo is
-available here](https://oaktreetrail.github.io/ST558_Project2/)
+here](https://github.com/oaktreetrail/ST558_Project2)
+
+\-[Regular repo is available
+here](https://oaktreetrail.github.io/ST558_Project2/)
