@@ -1,11 +1,11 @@
 ---
-title: 'ST558 Project 2: PCA'
+title: 'Principle Component Analysis(PCA)'
 author: "Lan Lin"
 date: '2022-07-19'
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,fig.path = "../images/")
 ```
 
 ```{r, include=FALSE}
