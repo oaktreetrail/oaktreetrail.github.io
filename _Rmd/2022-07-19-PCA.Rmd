@@ -1,0 +1,101 @@
+---
+title: 'ST558 Project 2: PCA'
+author: "Lan Lin"
+date: '2022-07-19'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+
+```
+
+
+Having expression data for thousands of genes can be overwhelming to explore! This is a good example of a multi-dimensional dataset: we have many variables (genes) that we want to use to understand patterns of similarity between our samples (yeast cells).
+
+There are several methods to help summarise multi-dimensional data, here we will show how to use PCA (principal component analysis).
+
+PCA is a transformation of high-dimensional data into an orthogonal basis such that first principal component (PC, aka “axis”) is aligned with the largest source of variance, the second PC to the largest remaining source of variance and so on. This makes high-dimensional data more amenable to visual exploration, as we can examine projections to the first two (or few) PCs. 
+
+```{r}
+# Read in the world map
+trans_cts <- read_csv("./data/counts_transformed.csv")
+```
+To compute a PCA in R we can use the prcomp() function. This function takes a matrix of data, where the columns are the variables that we want to use to transform our samples, which should be the rows of the matrix.
+
+In our case, we want to look for similarities across our yeast cells (samples = rows) based on gene expression (variables = columns). For that reason, we need to provide a transposed version of our table to the prcomp() function:
+
+```{r}
+# Create a matrix from our table of counts
+pca_matrix <- trans_cts %>% 
+  # make the "gene" column become the rownames of the table
+  column_to_rownames("gene") %>% 
+  # coerce to a matrix
+  as.matrix() %>% 
+  # transpose the matrix so that rows = samples and columns = variables
+  t()
+
+# Perform the PCA
+sample_pca <- prcomp(pca_matrix)
+sample_pca
+
+```
+
+The first important question to ask after we do a PCA is how many PCs we have and how much variance they explain.
+
+We need to extract the variance explained by each PC from our sample_pca object. prcomp() returns an oject of its own class. To access individual elements from this object, we use the $ notation, similarly to how you can access individual columns from a data.frame.
+
+```{r}
+#biplot(sample_pca, xlabs = rep(".", nrow(trans_cts)), cex = 1.2)
+pc_eigenvalues <- sample_pca$sdev^2
+# create a "tibble" manually with 
+# a variable indicating the PC number
+# and a variable with the variances
+pc_eigenvalues <- tibble(PC = factor(1:length(pc_eigenvalues)), 
+                         variance = pc_eigenvalues) %>% 
+  # add a new column with the percent variance
+  mutate(pct = variance/sum(variance)*100) %>% 
+  # add another column with the cumulative variance explained
+  mutate(pct_cum = cumsum(pct))
+
+# print the result
+pc_eigenvalues
+```
+
+Notice that we’ve encoded the PC variable as a factor because this is really a categorical variable (the identifier of the principal component).
+
+This table can now be used to produce a Scree Plot, which shows the fraction of total variance explained by each principal component. We will show both the variance explained by individual PCs as well as the cumulative variance, using a type of visualisation known as a pareto chart:
+
+
+```{r}
+pc_eigenvalues %>% 
+  ggplot(aes(x = PC)) +
+  geom_col(aes(y = pct)) +
+  geom_line(aes(y = pct_cum, group = 1)) + 
+  geom_point(aes(y = pct_cum)) +
+  labs(x = "Principal component", y = "Fraction variance explained")
+```
+
+Next, we turn to visualising our samples on the new PC coordinate
+
+
+```{r}
+# The PC scores are stored in the "x" value of the prcomp object
+pc_scores <- sample_pca$x
+pc_scores <- pc_scores %>% 
+  # convert to a tibble retaining the sample names as a new column
+  as_tibble(rownames = "sample")
+
+# print the result
+pc_scores
+
+pc_scores %>% 
+  # create the plot
+  ggplot(aes(x = PC1, y = PC2)) +
+ geom_point()
+```
+
+This is a very simple plot, but already we can see there is some structure in our data, suggesting clusters of samples that are more similar to each other.
