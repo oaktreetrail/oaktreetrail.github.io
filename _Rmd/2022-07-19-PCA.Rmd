@@ -18,7 +18,7 @@ Principal component analysis(PCA) in R programming is an analysis of the linear 
 For example,having expression data for thousands of genes can be overwhelming to explore!  Here we will show how to use PCA (principal component analysis). 
 This is a good example of a multi-dimensional dataset: we have many variables (genes) that we want to use to understand patterns of similarity between our samples (yeast cells).
 
-```{r}
+```{r, include=FALSE}
 # Read in the world map
 trans_cts <- read_csv("./data/counts_transformed.csv")
 ```
@@ -37,13 +37,12 @@ pca_matrix <- trans_cts %>%
 
 # Perform the PCA
 sample_pca <- prcomp(pca_matrix)
-sample_pca
 
 ```
 
 The first important question to ask after we do a PCA is how many PCs we have and how much variance they explain.
 
-We need to extract the variance explained by each PC from our sample_pca object. prcomp() returns an oject of its own class. To access individual elements from this object, we use the $ notation, similarly to how you can access individual columns from a data.frame.
+We need to extract the variance explained by each PC from our sample_pca object. prcomp() returns an object of its own class. To access individual elements from this object, we use the $ notation, similarly to how you can access individual columns from a data.frame.
 
 ```{r}
 #biplot(sample_pca, xlabs = rep(".", nrow(trans_cts)), cex = 1.2)
